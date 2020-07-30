@@ -20,6 +20,9 @@ public class ApiTest {
 
     IotClient client;
 
+    /**
+     * 初始化并构造{@link IotClient}
+     */
     @Before
     public void initClient() {
         IotProfile profile = new IotProfile();
@@ -31,6 +34,10 @@ public class ApiTest {
         client = IotClient.create(profile);
     }
 
+    /**
+     * 关闭{@link IotClient}并释放资源
+     * @throws IOException 如果有IO 错误
+     */
     @After
     public void destroyClient() throws IOException {
         client.close();

@@ -1,6 +1,6 @@
 package com.github.cm.heclouds.onenet.studio.api.test;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 import com.github.cm.heclouds.onenet.studio.api.entity.application.device.*;
 import com.github.cm.heclouds.onenet.studio.api.entity.common.QueryDeviceDetailResponse;
 import com.github.cm.heclouds.onenet.studio.api.entity.enums.EventType;
@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 应用开发类-设备操作API调用单元测试
  * @author ChengQi
  * @date 2020-07-06 16:27
  */
@@ -25,6 +26,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
     private final String projectId = "rYEt9n";
 
+    /**
+     * 同步调用设备详情API
+     */
     @Test
     public void testQueryDeviceDetail() {
         QueryDeviceDetailRequest request = new QueryDeviceDetailRequest();
@@ -34,7 +38,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             QueryDeviceDetailResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -43,6 +47,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备详情API
+     */
     @Test
     public void testQueryDeviceDetailAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -53,7 +60,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -66,6 +73,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备状态查询API
+     */
     @Test
     public void testQueryDeviceStatus() {
         QueryDeviceStatusRequest request = new QueryDeviceStatusRequest();
@@ -75,7 +85,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             QueryDeviceStatusResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -84,6 +94,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备状态查询API
+     */
     @Test
     public void testQueryDeviceStatusAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -94,7 +107,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -107,6 +120,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备状态历史数据查询API
+     */
     @Test
     public void testQueryDeviceStatusHistory() {
         QueryDeviceStatusHistoryRequest request = new QueryDeviceStatusHistoryRequest();
@@ -120,7 +136,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             QueryDeviceStatusHistoryResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -129,6 +145,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备状态历史数据查询API
+     */
     @Test
     public void testQueryDeviceStatusHistoryAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -143,7 +162,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -156,6 +175,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备属性设置API
+     */
     @Test
     public void testSetDeviceProperty() {
         SetDevicePropertyRequest request = new SetDevicePropertyRequest();
@@ -166,7 +188,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             SetDevicePropertyResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -175,6 +197,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备属性设置API
+     */
     @Test
     public void testSetDevicePropertyAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -186,7 +211,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -199,6 +224,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备属性期望设置API
+     */
     @Test
     public void testSetDeviceDesiredPropertyResponse() {
         SetDeviceDesiredPropertyRequest request = new SetDeviceDesiredPropertyRequest();
@@ -210,7 +238,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             SetDeviceDesiredPropertyResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -219,6 +247,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备属性期望设置API
+     */
     @Test
     public void testSetDeviceDesiredPropertyResponseAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -230,7 +261,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -243,6 +274,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备属性期望查询API
+     */
     @Test
     public void testQueryDeviceDesiredProperty() {
         QueryDeviceDesiredPropertyRequest request = new QueryDeviceDesiredPropertyRequest();
@@ -256,7 +290,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
             System.out.println("requestId:" + response.getRequestId());
             response.forEach((identify, property) -> {
                 System.out.println("identify:" + identify);
-                System.out.println("property:" + JSONObject.toJSONString(property));
+                System.out.println("property:" + JSON.toJSONString(property));
             });
         } catch (IotClientException e) {
             e.printStackTrace();
@@ -266,6 +300,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备属性期望查询API
+     */
     @Test
     public void testQueryDeviceDesiredPropertyAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -280,7 +317,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
                 System.out.println("requestId:" + response.getRequestId());
                 response.forEach((identify, property) -> {
                     System.out.println("identify:" + identify);
-                    System.out.println("property:" + JSONObject.toJSONString(property));
+                    System.out.println("property:" + JSON.toJSONString(property));
                 });
             } else {
                 if (cause instanceof IotServerException) {
@@ -294,6 +331,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备属性期望删除API
+     */
     @Test
     public void testDeleteDeviceDesiredProperty() {
         DeleteDeviceDesiredPropertyRequest request = new DeleteDeviceDesiredPropertyRequest();
@@ -304,7 +344,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             DeleteDeviceDesiredPropertyResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -313,6 +353,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备属性期望删除API
+     */
     @Test
     public void testDeleteDeviceDesiredPropertyAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -324,7 +367,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -337,6 +380,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备操作日志查询API
+     */
     @Test
     public void testQueryDeviceLog() {
         QueryDeviceLogRequest request = new QueryDeviceLogRequest();
@@ -352,7 +398,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             QueryDeviceLogResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -361,6 +407,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备操作日志查询API
+     */
     @Test
     public void testQueryDeviceLogAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -377,7 +426,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -390,6 +439,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备属性最新数据查询API
+     */
     @Test
     public void testQueryDeviceProperty() {
         QueryDevicePropertyRequest request = new QueryDevicePropertyRequest();
@@ -400,7 +452,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
         try {
             QueryDevicePropertyResponse response = client.sendRequest(request);
             System.out.println("requestId:" + response.getRequestId());
-            response.forEach(deviceProperty -> System.out.println(JSONObject.toJSONString(deviceProperty)));
+            response.forEach(deviceProperty -> System.out.println(JSON.toJSONString(deviceProperty)));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -409,6 +461,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备属性最新数据查询API
+     */
     @Test
     public void testQueryDevicePropertyAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -420,7 +475,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
                 System.out.println("requestId:" + response.getRequestId());
-                response.forEach(deviceProperty -> System.out.println(JSONObject.toJSONString(deviceProperty)));
+                response.forEach(deviceProperty -> System.out.println(JSON.toJSONString(deviceProperty)));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -433,6 +488,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备属性历史数据查询API
+     */
     @Test
     public void testQueryDevicePropertyHistory() {
         QueryDevicePropertyHistoryRequest request = new QueryDevicePropertyHistoryRequest();
@@ -450,7 +508,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             QueryDevicePropertyHistoryResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -459,6 +517,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备属性历史数据查询API
+     */
     @Test
     public void testQueryDevicePropertyHistoryAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -477,7 +538,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -490,6 +551,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备事件历史数据查询API
+     */
     @Test
     public void testQueryDeviceEventHistory() {
         QueryDeviceEventHistoryRequest request = new QueryDeviceEventHistoryRequest();
@@ -507,7 +571,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         try {
             QueryDeviceEventHistoryResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -516,6 +580,9 @@ public class ApplicationDeviceApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备事件历史数据查询API
+     */
     @Test
     public void testQueryDeviceEventHistoryAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -534,7 +601,7 @@ public class ApplicationDeviceApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;

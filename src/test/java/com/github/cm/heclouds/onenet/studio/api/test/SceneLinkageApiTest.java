@@ -1,6 +1,6 @@
 package com.github.cm.heclouds.onenet.studio.api.test;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 import com.github.cm.heclouds.onenet.studio.api.entity.application.scene.*;
 import com.github.cm.heclouds.onenet.studio.api.entity.enums.CType;
 import com.github.cm.heclouds.onenet.studio.api.entity.enums.DataType;
@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 应用开发类-场景联动API调用单元测试
  * @author ChengQi
  * @date 2020/7/8
  */
@@ -25,6 +26,9 @@ public class SceneLinkageApiTest extends ApiTest {
 
     private final String projectId = "rYEt9n";
 
+    /**
+     * 同步调用场景联动规则创建API
+     */
     @Test
     public void testCreateSceneRule() {
         CreateSceneRuleRequest request = new CreateSceneRuleRequest();
@@ -52,7 +56,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         try {
             CreateSceneRuleResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -61,6 +65,9 @@ public class SceneLinkageApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用场景联动规则创建API
+     */
     @Test
     public void testCreateSceneRuleAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -89,7 +96,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -102,6 +109,9 @@ public class SceneLinkageApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用场景联动规则编辑API
+     */
     @Test
     public void testUpdateSceneRule() {
         UpdateSceneRuleRequest request = new UpdateSceneRuleRequest();
@@ -130,7 +140,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         try {
             UpdateSceneRuleResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -139,6 +149,9 @@ public class SceneLinkageApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用场景联动规则编辑API
+     */
     @Test
     public void testUpdateSceneRuleAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -168,7 +181,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -181,6 +194,9 @@ public class SceneLinkageApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用场景联动规则详情API
+     */
     @Test
     public void testQuerySceneRuleDetail() {
         QuerySceneRuleDetailRequest request = new QuerySceneRuleDetailRequest();
@@ -189,7 +205,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         try {
             QuerySceneRuleDetailResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -198,6 +214,9 @@ public class SceneLinkageApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用场景联动规则详情API
+     */
     @Test
     public void testQuerySceneRuleDetailAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -207,7 +226,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -220,6 +239,9 @@ public class SceneLinkageApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用场景联动规则列表API
+     */
     @Test
     public void testQuerySceneRules() {
         QuerySceneRulesRequest request = new QuerySceneRulesRequest();
@@ -229,7 +251,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         try {
             QuerySceneRulesResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -238,6 +260,9 @@ public class SceneLinkageApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用场景联动规则列表API
+     */
     @Test
     public void testQuerySceneRulesAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -248,7 +273,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -261,6 +286,9 @@ public class SceneLinkageApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用场景联动触发日志API
+     */
     @Test
     public void testQuerySceneLog() {
         QuerySceneLogRequest request = new QuerySceneLogRequest();
@@ -275,7 +303,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         try {
             QuerySceneLogResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -284,6 +312,9 @@ public class SceneLinkageApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用场景联动触发日志API
+     */
     @Test
     public void testQuerySceneLogAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -299,7 +330,7 @@ public class SceneLinkageApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;

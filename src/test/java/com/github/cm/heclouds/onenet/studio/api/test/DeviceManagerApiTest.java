@@ -1,6 +1,6 @@
 package com.github.cm.heclouds.onenet.studio.api.test;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 import com.github.cm.heclouds.onenet.studio.api.entity.common.*;
 import com.github.cm.heclouds.onenet.studio.api.exception.IotClientException;
 import com.github.cm.heclouds.onenet.studio.api.exception.IotServerException;
@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 设备管理类-API调用单元测试
  * @author ChengQi
  * @date 2020-07-02 14:21
  */
@@ -17,6 +18,9 @@ public class DeviceManagerApiTest extends ApiTest {
 
     private final String productId = "EWQ0uNRuUp";
 
+    /**
+     * 同步调用设备创建API
+     */
     @Test
     public void testCreateDevice() {
         CreateDeviceRequest request = new CreateDeviceRequest();
@@ -26,7 +30,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         try {
             CreateDeviceResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -35,6 +39,9 @@ public class DeviceManagerApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备创建API
+     */
     @Test
     public void testCreateDeviceAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -45,7 +52,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -58,6 +65,9 @@ public class DeviceManagerApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备批量创建API
+     */
     @Test
     public void testBatchCreateDevices() {
         BatchCreateDevicesRequest request = new BatchCreateDevicesRequest();
@@ -74,7 +84,7 @@ public class DeviceManagerApiTest extends ApiTest {
         try {
             BatchCreateDevicesResponse response = client.sendRequest(request);
             System.out.println(response.getRequestId());
-            response.forEach(deviceDetail -> System.out.println(JSONObject.toJSONString(deviceDetail)));
+            response.forEach(deviceDetail -> System.out.println(JSON.toJSONString(deviceDetail)));
         } catch (IotClientException e) {
             e.printStackTrace();
         }  catch (IotServerException e) {
@@ -83,6 +93,9 @@ public class DeviceManagerApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备批量创建API
+     */
     @Test
     public void testBatchCreateDevicesAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -100,7 +113,7 @@ public class DeviceManagerApiTest extends ApiTest {
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (cause == null) {
                 System.out.println(response.getRequestId());
-                response.forEach(deviceDetail -> System.out.println(JSONObject.toJSONString(deviceDetail)));
+                response.forEach(deviceDetail -> System.out.println(JSON.toJSONString(deviceDetail)));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -113,6 +126,9 @@ public class DeviceManagerApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备编辑API
+     */
     @Test
     public void testUpdateDevice() {
         UpdateDeviceRequest request = new UpdateDeviceRequest();
@@ -122,7 +138,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         try {
             UpdateDeviceResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -131,6 +147,9 @@ public class DeviceManagerApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备编辑API
+     */
     @Test
     public void testUpdateDeviceAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -141,7 +160,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -154,6 +173,9 @@ public class DeviceManagerApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备删除API
+     */
     @Test
     public void testDeleteDevice() {
         DeleteDeviceRequest request = new DeleteDeviceRequest();
@@ -162,7 +184,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         try {
             DeleteDeviceResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -171,6 +193,9 @@ public class DeviceManagerApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备删除API
+     */
     @Test
     public void testDeleteDeviceAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -180,7 +205,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -193,6 +218,9 @@ public class DeviceManagerApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用设备详情API
+     */
     @Test
     public void testQueryDeviceDetail() {
         QueryDeviceDetailRequest request = new QueryDeviceDetailRequest();
@@ -201,7 +229,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         try {
             QueryDeviceDetailResponse response = client.sendRequest(request);
-            System.out.println(JSONObject.toJSONString(response));
+            System.out.println(JSON.toJSONString(response));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -210,6 +238,9 @@ public class DeviceManagerApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用设备详情API
+     */
     @Test
     public void testQueryDeviceDetailAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -219,7 +250,7 @@ public class DeviceManagerApiTest extends ApiTest {
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
-                System.out.println(JSONObject.toJSONString(response));
+                System.out.println(JSON.toJSONString(response));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
