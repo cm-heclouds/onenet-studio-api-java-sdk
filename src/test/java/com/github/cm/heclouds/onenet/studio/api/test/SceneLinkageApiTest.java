@@ -37,13 +37,20 @@ public class SceneLinkageApiTest extends ApiTest {
         request.setEmitCondition(EmitCondition.ALL);
 
         Condition condition = new Condition();
-        condition.setCtype(CType.NOTIFY);
+//        condition.setCtype(CType.NOTIFY);
+//        condition.setDeviceName("api-sdk-device-001");
+//        condition.setProductId("EWQ0uNRuUp");
+//        condition.setIdentifier("api-sdk-develop-function-001");
+//        condition.setType(DataType.INT32);
+//        condition.setOperator(Operator.EQ);
+//        condition.setValue("10");
+
+        condition.setCtype(CType.LIFECYCLE);
         condition.setDeviceName("api-sdk-device-001");
         condition.setProductId("EWQ0uNRuUp");
-        condition.setIdentifier("api-sdk-develop-function-001");
-        condition.setType(DataType.INT32);
         condition.setOperator(Operator.EQ);
-        condition.setValue("10");
+        condition.setValue("online");
+
         request.addCondition(condition);
 
         Action action = new Action();

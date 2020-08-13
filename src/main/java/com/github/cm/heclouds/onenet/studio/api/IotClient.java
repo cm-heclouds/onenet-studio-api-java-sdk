@@ -42,7 +42,7 @@ public interface IotClient extends Closeable {
             method = DEFAULT_SIGNATURE_METHOD;
         }
         return new DefaultIotClient(profile.userId(), profile.roleId(), profile.accessKey(),
-                method, expiredDuration, profile.enableSsl());
+                method, expiredDuration, profile.url(), profile.enableSsl());
     }
 
     /**

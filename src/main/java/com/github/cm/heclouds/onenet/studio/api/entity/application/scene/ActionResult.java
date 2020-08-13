@@ -5,7 +5,7 @@ package com.github.cm.heclouds.onenet.studio.api.entity.application.scene;
  * @author ChengQi
  * @date 2020/7/8
  */
-public class ActionResult extends Action {
+public class ActionResult extends ActionExpand {
 
     /**
      * 执行结果

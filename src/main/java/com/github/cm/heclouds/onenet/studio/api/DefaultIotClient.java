@@ -39,7 +39,7 @@ public class DefaultIotClient implements IotClient {
     private OkHttpClient client;
 
     DefaultIotClient(String userId, String roleId, String accessKey, SignatureMethod method,
-                     TemporalAmount temporalAmount, boolean enableSsl) {
+                     TemporalAmount temporalAmount, String url, boolean enableSsl) {
         if (!checkConstructParams(userId, accessKey, method)) {
             return;
         }
@@ -69,6 +69,9 @@ public class DefaultIotClient implements IotClient {
                 .build();
         if (enableSsl) {
             passUrl = Constant.OPEN_API_URL_SSL;
+        }
+        if (StringUtils.isNotEmpty(url)) {
+            passUrl = url;
         }
         initialSuccess = true;
     }

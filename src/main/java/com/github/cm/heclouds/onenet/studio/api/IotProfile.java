@@ -17,6 +17,7 @@ public class IotProfile {
     private SignatureMethod signatureMethod;
 
     private boolean enableSsl = false;
+    private String url;
 
     public IotProfile userId(String userId) {
         this.userId = userId;
@@ -70,5 +71,14 @@ public class IotProfile {
 
     public boolean enableSsl() {
         return enableSsl;
+    }
+
+    public IotProfile url(String url) {
+        this.url = url;
+        return this;
+    }
+
+    public String url() {
+        return url;
     }
 }

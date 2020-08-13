@@ -32,12 +32,12 @@ public class QuerySceneRuleDetailResponse extends AbstractResponse {
     /**
      * 触发方式集合
      */
-    private List<Condition> conditions;
+    private List<ConditionExpand> conditions;
 
     /**
      * 执行动作集合
      */
-    private List<Action> actions;
+    private List<ActionExpand> actions;
 
     /**
      * 创建时间
@@ -67,19 +67,19 @@ public class QuerySceneRuleDetailResponse extends AbstractResponse {
         this.emitCondition = emitCondition;
     }
 
-    public List<Condition> getConditions() {
+    public List<ConditionExpand> getConditions() {
         return conditions;
     }
 
-    public void setConditions(List<Condition> conditions) {
+    public void setConditions(List<ConditionExpand> conditions) {
         this.conditions = conditions;
     }
 
-    public List<Action> getActions() {
+    public List<ActionExpand> getActions() {
         return actions;
     }
 
-    public void setActions(List<Action> actions) {
+    public void setActions(List<ActionExpand> actions) {
         this.actions = actions;
     }
 

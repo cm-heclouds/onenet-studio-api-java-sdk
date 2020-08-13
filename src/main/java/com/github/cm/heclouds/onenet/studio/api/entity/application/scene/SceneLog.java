@@ -33,7 +33,7 @@ public class SceneLog {
     /**
      * 触发条件
      */
-    private List<Condition> conditions;
+    private List<ConditionExpand> conditions;
 
     /**
      * 执行动作结果
@@ -64,11 +64,11 @@ public class SceneLog {
         this.createdAt = createdAt;
     }
 
-    public List<Condition> getConditions() {
+    public List<ConditionExpand> getConditions() {
         return conditions;
     }
 
-    public void setConditions(List<Condition> conditions) {
+    public void setConditions(List<ConditionExpand> conditions) {
         this.conditions = conditions;
     }
 

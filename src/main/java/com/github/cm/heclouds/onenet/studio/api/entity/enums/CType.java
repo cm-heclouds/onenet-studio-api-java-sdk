@@ -12,11 +12,19 @@ public enum CType implements ValueHolder<String> {
     /**
      * 设备生命周期
      */
-    LIFECYCLE("lifecycle"),
+    LIFECYCLE("lifeCycle"),
     /**
      * 设备数据上报
      */
-    NOTIFY("notify");
+    NOTIFY("notify"),
+    /**
+     * 三方天气数据
+     */
+    EXTENSION("extension"),
+    /**
+     * 定时条件
+     */
+    TIMER("timer");
 
     private String value;
 
