@@ -18,8 +18,6 @@ public class ApiTest {
     private final String userId = "<your userId>";
     private final String accessKey = "<your accessKey>";
 
-    private final String url = "";
-
     IotClient client;
 
     /**
@@ -29,10 +27,8 @@ public class ApiTest {
     public void initClient() {
         IotProfile profile = new IotProfile();
         profile.userId(userId)
-//                .roleId(roleId)
                 .accessKey(accessKey)
                 .enableSsl(true)
-//                .url(url)
                 .signatureMethod(SignatureMethod.SHA256);
         client = IotClient.create(profile);
     }

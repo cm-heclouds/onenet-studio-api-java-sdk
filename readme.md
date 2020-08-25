@@ -18,20 +18,20 @@ JDK1.8及以上
 <dependency>
   <groupId>com.github.cm-heclouds</groupId>
   <artifactId>onenet-studio-api-sdk</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'com.github.cm-heclouds:onenet-studio-api-sdk:1.0.0'
+implementation 'com.github.cm-heclouds:onenet-studio-api-sdk:1.0.1'
 ```
 
 ### SBT
 
 ```scala
-libraryDependencies += "com.github.cm-heclouds" % "onenet-studio-api-sdk" % "1.0.0"
+libraryDependencies += "com.github.cm-heclouds" % "onenet-studio-api-sdk" % "1.0.1"
 ```
 
 ## 如何使用
