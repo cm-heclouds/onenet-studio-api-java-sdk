@@ -3,24 +3,24 @@ package com.github.cm.heclouds.onenet.studio.api.entity.enums;
 import com.github.cm.heclouds.onenet.studio.api.json.ValueHolder;
 
 /**
- * 第三方数据类型
+ * 是否是标准功能点
  * @author ChengQi
- * @date 2020/8/13
+ * @date 2020/10/14
  */
-public enum ExtType implements ValueHolder<String> {
+public enum FunctionType implements ValueHolder<String> {
 
     /**
-     * 第三方数据类型
+     * 自定义
      */
-    WEATHER("weather"),
-    TEMPERATURE("temperature"),
-    HUMIDITY("humidity"),
-    PM25("pm25"),
-    AIR_QUALITY("airquality");
+    CUSTOM("u"),
+    /**
+     * 系统
+     */
+    SYSTEM("s");
 
     private final String value;
 
-    ExtType(String value) {
+    FunctionType(String value) {
         this.value = value;
     }
 

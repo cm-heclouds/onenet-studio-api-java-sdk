@@ -18,7 +18,7 @@ public enum OnOffLineStatus implements ValueHolder<Integer> {
      */
     OFFLINE(0);
 
-    private Integer value;
+    private final Integer value;
 
     OnOffLineStatus(Integer value) {
         this.value = value;

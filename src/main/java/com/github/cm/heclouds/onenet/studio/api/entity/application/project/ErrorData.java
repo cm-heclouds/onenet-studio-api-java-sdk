@@ -3,20 +3,20 @@ package com.github.cm.heclouds.onenet.studio.api.entity.application.project;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 添加设备失败的错误信息
+ * 操作设备失败的错误信息
  * @author ChengQi
  * @date 2020-07-06 15:33
  */
 public class ErrorData {
 
     /**
-     * 添加失败设备名称
+     * 操作失败设备名称
      */
     @JSONField(name = "device_name")
     private String deviceName;
 
     /**
-     * 添加失败原因
+     * 操作失败原因
      */
     private String cause;
 

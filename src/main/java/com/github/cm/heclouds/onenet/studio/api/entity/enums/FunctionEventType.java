@@ -3,33 +3,33 @@ package com.github.cm.heclouds.onenet.studio.api.entity.enums;
 import com.github.cm.heclouds.onenet.studio.api.json.ValueHolder;
 
 /**
- * 事件类型 枚举类型
+ * 功能点事件类型 枚举类型
  * @author ChengQi
- * @date 2020-07-10 17:22
+ * @date 2020/10/14
  */
-public enum EventType implements ValueHolder<Integer> {
+public enum FunctionEventType implements ValueHolder<String> {
 
     /**
      * 信息
      */
-    MESSAGE(1),
+    INFO("info"),
     /**
      * 告警
      */
-    ALARM(2),
+    ALERT("alert"),
     /**
-     * 故障
+     * 错误
      */
-    FAULT(3);
+    ERROR("error");
 
-    private final Integer value;
+    private final String value;
 
-    EventType(Integer value) {
+    FunctionEventType(String value) {
         this.value = value;
     }
 
     @Override
-    public Integer getValue() {
+    public String getValue() {
         return value;
     }
 }

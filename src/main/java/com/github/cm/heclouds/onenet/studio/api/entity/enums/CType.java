@@ -26,7 +26,7 @@ public enum CType implements ValueHolder<String> {
      */
     TIMER("timer");
 
-    private String value;
+    private final String value;
 
     CType(String value) {
         this.value = value;

@@ -14,7 +14,7 @@ public enum DataProtocol implements ValueHolder<Integer> {
      */
     ONE_JSON(1);
 
-    private Integer value;
+    private final Integer value;
 
     DataProtocol(Integer value) {
         this.value = value;

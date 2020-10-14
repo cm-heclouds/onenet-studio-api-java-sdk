@@ -11,7 +11,8 @@ import com.github.cm.heclouds.onenet.studio.api.auth.SignatureMethod;
 public class IotProfile {
 
     private String userId;
-    private String roleId;
+    private String projectId;
+    private String groupId;
     private String accessKey;
     private Integer expiredAfterHours;
     private SignatureMethod signatureMethod;
@@ -28,13 +29,22 @@ public class IotProfile {
         return userId;
     }
 
-    public IotProfile roleId(String roleId) {
-        this.roleId = roleId;
+    public IotProfile projectId(String projectId) {
+        this.projectId = projectId;
         return this;
     }
 
-    public String roleId() {
-        return roleId;
+    public String projectId() {
+        return projectId;
+    }
+
+    public IotProfile groupId(String groupId) {
+        this.groupId = groupId;
+        return this;
+    }
+
+    public String groupId() {
+        return groupId;
     }
 
     public IotProfile accessKey(String accessKey) {

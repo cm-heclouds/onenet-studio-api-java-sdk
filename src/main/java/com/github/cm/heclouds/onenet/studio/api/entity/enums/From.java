@@ -18,7 +18,7 @@ public enum From implements ValueHolder<Integer> {
      */
     TRANSFERRED_BY_OTHERS(2);
 
-    private Integer value;
+    private final Integer value;
 
     From(Integer value) {
         this.value = value;

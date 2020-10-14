@@ -41,7 +41,7 @@ public enum RepeatDay implements ValueHolder<String> {
      */
     SUNDAY("sun");
 
-    private String value;
+    private final String value;
 
     RepeatDay(String value) {
         this.value = value;

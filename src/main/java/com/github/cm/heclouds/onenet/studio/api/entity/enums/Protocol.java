@@ -22,7 +22,7 @@ public enum Protocol implements ValueHolder<Integer> {
      */
     CoAP(3);
 
-    private Integer value;
+    private final Integer value;
 
     Protocol(Integer value) {
         this.value = value;

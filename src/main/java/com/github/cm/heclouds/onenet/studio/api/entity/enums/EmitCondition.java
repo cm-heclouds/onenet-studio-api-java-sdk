@@ -25,7 +25,7 @@ public enum EmitCondition implements ValueHolder<String> {
      */
     ANY("any");
 
-    private String value;
+    private final String value;
 
     EmitCondition(String value) {
         this.value = value;

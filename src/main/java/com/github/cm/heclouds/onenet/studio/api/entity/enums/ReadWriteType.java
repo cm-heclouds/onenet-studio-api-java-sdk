@@ -18,7 +18,7 @@ public enum ReadWriteType implements ValueHolder<Integer> {
      */
     READ(1);
 
-    private Integer value;
+    private final Integer value;
 
     ReadWriteType(Integer value) {
         this.value = value;

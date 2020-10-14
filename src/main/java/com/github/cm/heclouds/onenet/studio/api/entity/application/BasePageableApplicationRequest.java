@@ -9,7 +9,8 @@ import com.github.cm.heclouds.onenet.studio.api.entity.AbstractPagedResponse;
  * @author ChengQi
  * @date 2020-07-06 14:37
  */
-public abstract class BasePageableApplicationRequest<T extends AbstractPagedResponse> extends AbstractPageableRequest<T> {
+public abstract class BasePageableApplicationRequest<T extends AbstractPagedResponse<?>>
+        extends AbstractPageableRequest<T> {
 
     public BasePageableApplicationRequest(String action) {
         super(Constant.OPEN_API_NAMESPACE_APPLICATION, action);

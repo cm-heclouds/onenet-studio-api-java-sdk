@@ -44,9 +44,17 @@ public enum DataType implements ValueHolder<String> {
     /**
      * 位图
      */
-    BIT_MAP("bitMap");
+    BIT_MAP("bitMap"),
+    /**
+     * int64类型UTC时间戳毫秒
+     */
+    DATE("date"),
+    /**
+     * 数组
+     */
+    ARRAY("array");
 
-    private String value;
+    private final String value;
 
     DataType(String value) {
         this.value = value;

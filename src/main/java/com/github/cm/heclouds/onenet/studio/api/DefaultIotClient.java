@@ -38,14 +38,16 @@ public class DefaultIotClient implements IotClient {
     private String passUrl = Constant.OPEN_API_URL;
     private OkHttpClient client;
 
-    DefaultIotClient(String userId, String roleId, String accessKey, SignatureMethod method,
-                     TemporalAmount temporalAmount, String url, boolean enableSsl) {
-        if (!checkConstructParams(userId, accessKey, method)) {
+    DefaultIotClient(String userId, String projectId, String groupId, String accessKey,
+                     SignatureMethod method, TemporalAmount temporalAmount, String url, boolean enableSsl) {
+        if (!checkConstructParams(userId, projectId, groupId, accessKey, method)) {
             return;
         }
-        String res = "userid/" + userId;
-        if (StringUtils.isNotEmpty(roleId)) {
-            res += "/roleid/" + roleId;
+        String res;
+        if (StringUtils.isNotEmpty(userId)) {
+            res = "userid/" + userId;
+        } else {
+            res = "projectid/" + projectId + "/groupid/" + groupId;
         }
         LocalDateTime expireTime = LocalDateTime.now().plus(temporalAmount);
         long et = expireTime.toInstant(ZoneOffset.of("+8")).getEpochSecond();
@@ -131,7 +133,7 @@ public class DefaultIotClient implements IotClient {
      * @param request IotRequest
      * @return OkHttpRequest
      */
-    private Request buildRequest(AbstractRequest request) {
+    private Request buildRequest(AbstractRequest<?> request) {
         return request.requestBuilder().url(passUrl).build();
     }
 
@@ -169,13 +171,18 @@ public class DefaultIotClient implements IotClient {
     /**
      * it is called to validate parameters by constructor
      * @param userId OneNET Studio userId
+     * @param projectId OneNET Studio projectId
+     * @param groupId OneNET Studio groupId
      * @param accessKey OneNET Studio accessKey
      * @param method signature method
      * @return {@code true} if validate successful,{@code false} or else
      */
-    private boolean checkConstructParams(String userId, String accessKey, SignatureMethod method) {
-        if (StringUtils.isEmpty(userId)) {
-            initialError = new IotClientException("userId is empty");
+    private boolean checkConstructParams(String userId, String projectId, String groupId,
+                                         String accessKey, SignatureMethod method) {
+        boolean resInfoInvalid = StringUtils.isEmpty(userId) &&
+                (StringUtils.isEmpty(projectId) || StringUtils.isEmpty(groupId));
+        if (resInfoInvalid) {
+            initialError = new IotClientException("need userId or (projectId and groupId)");
             return false;
         }
         if (StringUtils.isEmpty(accessKey)) {

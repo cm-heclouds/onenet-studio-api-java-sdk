@@ -10,7 +10,7 @@ import com.github.cm.heclouds.onenet.studio.api.AbstractRequest;
  * @author ChengQi
  * @date 2020-07-06 14:27
  */
-public abstract class AbstractPageableRequest<T extends AbstractPagedResponse> extends AbstractRequest<T> {
+public abstract class AbstractPageableRequest<T extends AbstractPagedResponse<?>> extends AbstractRequest<T> {
 
     public AbstractPageableRequest(String nameSpace, String action) {
         super(nameSpace, Method.GET, action);

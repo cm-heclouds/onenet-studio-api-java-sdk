@@ -24,7 +24,7 @@ public enum Sort implements ValueHolder<Integer> {
      */
     DESC(2);
 
-    private int value;
+    private final int value;
 
     Sort(int value) {
         this.value = value;

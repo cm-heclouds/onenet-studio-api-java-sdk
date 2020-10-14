@@ -22,7 +22,7 @@ public enum Status implements ValueHolder<Integer> {
      */
     OFFLINE(3);
 
-    private Integer value;
+    private final Integer value;
 
     Status(Integer value) {
         this.value = value;

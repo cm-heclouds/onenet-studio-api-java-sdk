@@ -14,7 +14,7 @@ public enum NodeType implements ValueHolder<Integer> {
      */
     DIRECTLY_CONNECT_DEVICE(1);
 
-    private Integer value;
+    private final Integer value;
 
     NodeType(Integer value) {
         this.value = value;

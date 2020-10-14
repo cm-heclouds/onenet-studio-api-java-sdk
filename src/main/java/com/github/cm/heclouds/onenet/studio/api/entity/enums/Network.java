@@ -26,7 +26,7 @@ public enum Network implements ValueHolder<Integer> {
      */
     ETHERNET(4);
 
-    private Integer value;
+    private final Integer value;
 
     Network(Integer value) {
         this.value = value;

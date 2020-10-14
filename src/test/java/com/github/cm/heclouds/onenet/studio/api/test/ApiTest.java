@@ -15,8 +15,8 @@ import java.io.IOException;
 @SuppressWarnings("FieldCanBeLocal")
 public class ApiTest {
 
-    private final String userId = "<your userId>";
-    private final String accessKey = "<your accessKey>";
+    private final String userId = "154377";
+    private final String accessKey = "ioI/lquiGVxzEFRGuijpXNSqb8MH0pUEjH67jwEPL1AuKn9/HDr1XhCNv7vXfGiQgOTP1G+l7ThhgqtKvWj1ww==";
 
     IotClient client;
 
