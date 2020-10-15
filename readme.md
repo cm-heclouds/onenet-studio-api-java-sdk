@@ -71,7 +71,7 @@ request.setDesc("<description about your device>");
 
 try {
     CreateDeviceResponse response = client.sendRequest(request);
-    System.out.println(JSONObject.toJSONString(response));
+    System.out.println(JSON.toJSONString(response));
 } catch (IotClientException e) {
     e.printStackTrace();
 } catch (IotServerException e) {
@@ -90,7 +90,7 @@ request.setDesc("<description about your device>");
 
 client.sendRequestAsync(request).whenComplete((response, cause) -> {
     if (response != null) {
-        System.out.println(JSONObject.toJSONString(response));
+        System.out.println(JSON.toJSONString(response));
     } else {
         if (cause instanceof IotServerException) {
             IotServerException serverError = (IotServerException) cause;
