@@ -1,6 +1,8 @@
 package com.github.cm.heclouds.onenet.studio.api.test;
 
 import com.alibaba.fastjson.JSON;
+import com.github.cm.heclouds.onenet.studio.api.entity.application.device.CallServiceRequest;
+import com.github.cm.heclouds.onenet.studio.api.entity.application.device.CallServiceResponse;
 import com.github.cm.heclouds.onenet.studio.api.entity.application.group.*;
 import com.github.cm.heclouds.onenet.studio.api.entity.common.*;
 import com.github.cm.heclouds.onenet.studio.api.entity.enums.*;
@@ -13,7 +15,9 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * 设备管理类-物模型API调用单元测试
+ * <p>设备管理类-物模型API调用单元测试</p>
+ * <p>应用开发类-分组管理API调用单元测试</p>
+ * <p>应用开发类-服务调用API单元测试</p>
  * @author ChengQi
  * @date 2020/10/14
  */
@@ -250,7 +254,7 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         CountDownLatch latch = new CountDownLatch(1);
         CreateGroupRequest request = new CreateGroupRequest();
         request.setProjectId(projectId);
-        request.setName("group2");
+        request.setName("group3");
 
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
@@ -267,16 +271,18 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用分组删除API
+     */
     @Test
     public void testDeleteGroup() {
         DeleteGroupRequest request = new DeleteGroupRequest();
         request.setProjectId(projectId);
-        request.setId("aXlthv");
+        request.setId("ZTwQXY");
 
         try {
             DeleteGroupResponse response = client.sendRequest(request);
             System.out.println(response.getRequestId());
-            response.forEach(errorData -> System.out.println(JSON.toJSONString(errorData)));
         } catch (IotClientException e) {
             e.printStackTrace();
         } catch (IotServerException e) {
@@ -285,6 +291,9 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用分组删除API
+     */
     @Test
     public void testDeleteGroupAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -295,7 +304,6 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         client.sendRequestAsync(request).whenComplete((response, cause) -> {
             if (response != null) {
                 System.out.println(response.getRequestId());
-                response.forEach(errorData -> System.out.println(JSON.toJSONString(errorData)));
             } else {
                 if (cause instanceof IotServerException) {
                     IotServerException serverError = (IotServerException) cause;
@@ -308,6 +316,9 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用分组编辑API
+     */
     @Test
     public void testUpdateGroup() {
         UpdateGroupRequest request = new UpdateGroupRequest();
@@ -327,6 +338,9 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         }
     }
 
+    /**
+     * 异步调用分组编辑API
+     */
     @Test
     public void testUpdateGroupAsync() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
@@ -351,6 +365,9 @@ public class ThingModelAndGroupApiTest extends ApiTest {
         latch.await();
     }
 
+    /**
+     * 同步调用分组详情API
+     */
     @Test
     public void testQueryGroupDetail() {
         QueryGroupDetailRequest request = new QueryGroupDetailRequest();
@@ -366,5 +383,232 @@ public class ThingModelAndGroupApiTest extends ApiTest {
             System.err.println(e.getCode());
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 异步调用分组详情API
+     */
+    @Test
+    public void testQueryGroupDetailAsync() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        QueryGroupDetailRequest request = new QueryGroupDetailRequest();
+        request.setProjectId(projectId);
+        request.setId("KXhRAz");
+
+        client.sendRequestAsync(request).whenComplete((response, cause) -> {
+            if (response != null) {
+                System.out.println(JSON.toJSONString(response));
+            } else {
+                if (cause instanceof IotServerException) {
+                    IotServerException serverError = (IotServerException) cause;
+                    System.err.println(serverError.getCode());
+                }
+                cause.printStackTrace();
+            }
+            latch.countDown();
+        });
+        latch.await();
+    }
+
+    /**
+     * 同步调用分组列表API
+     */
+    @Test
+    public void testQueryGroupList() {
+        QueryGroupListRequest request = new QueryGroupListRequest();
+        request.setProjectId(projectId);
+        request.setTagKey("kuku");
+        request.setTagValue("yiku");
+        request.setOffset(0);
+        request.setLimit(10);
+
+        try {
+            QueryGroupListResponse response = client.sendRequest(request);
+            System.out.println(JSON.toJSONString(response));
+        } catch (IotClientException e) {
+            e.printStackTrace();
+        } catch (IotServerException e) {
+            System.err.println(e.getCode());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 异步调用分组列表API
+     */
+    @Test
+    public void testQueryGroupListAsync() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        QueryGroupListRequest request = new QueryGroupListRequest();
+        request.setProjectId(projectId);
+        request.setTagKey("kuku");
+        request.setTagValue("yiku");
+        request.setOffset(0);
+        request.setLimit(10);
+
+        client.sendRequestAsync(request).whenComplete((response, cause) -> {
+           if (response != null) {
+               System.out.println(JSON.toJSONString(response));
+           } else {
+               if (cause instanceof IotServerException) {
+                   IotServerException serverError = (IotServerException) cause;
+                   System.err.println(serverError.getCode());
+               }
+               cause.printStackTrace();
+           }
+           latch.countDown();
+        });
+        latch.await();
+    }
+
+    /**
+     * 同步调用分组设备添加API
+     */
+    @Test
+    public void testAddGroupDevice() {
+        AddGroupDeviceRequest request = new AddGroupDeviceRequest();
+        request.setProjectId(projectId);
+        request.setId("KXhRAz");
+        request.setProductId(productId);
+        request.setDevices(Collections.singletonList("api-sdk-device-005"));
+
+        try {
+            AddGroupDeviceResponse response = client.sendRequest(request);
+            System.out.println(response.getRequestId());
+            response.forEach(errorData -> System.out.println(JSON.toJSONString(errorData)));
+        } catch (IotClientException e) {
+            e.printStackTrace();
+        } catch (IotServerException e) {
+            System.err.println(e.getCode());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 异步调用分组设备添加API
+     */
+    @Test
+    public void testAddGroupDeviceAsync() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        AddGroupDeviceRequest request = new AddGroupDeviceRequest();
+        request.setProjectId(projectId);
+        request.setId("KXhRAz");
+        request.setProductId(productId);
+        request.setDevices(Collections.singletonList("api-sdk-device-001"));
+
+        client.sendRequestAsync(request).whenComplete((response, cause) -> {
+            if (response != null) {
+                System.out.println(response.getRequestId());
+                response.forEach(errorData -> System.out.println(JSON.toJSONString(errorData)));
+            } else {
+                if (cause instanceof IotServerException) {
+                    IotServerException serverError = (IotServerException) cause;
+                    System.err.println(serverError.getCode());
+                }
+                cause.printStackTrace();
+            }
+            latch.countDown();
+        });
+        latch.await();
+    }
+
+    /**
+     * 同步调用分组设备移除API
+     */
+    @Test
+    public void testRemoveGroupDevice() {
+        RemoveGroupDeviceRequest request = new RemoveGroupDeviceRequest();
+        request.setProjectId(projectId);
+        request.setId("KXhRAz");
+        request.setProductId(productId);
+        request.setDevices(Collections.singletonList("api-sdk-device-005"));
+
+        try {
+            RemoveGroupDeviceResponse response = client.sendRequest(request);
+            System.out.println(response.getRequestId());
+            response.forEach(errorData -> System.out.println(JSON.toJSONString(errorData)));
+        } catch (IotClientException e) {
+            e.printStackTrace();
+        } catch (IotServerException e) {
+            System.err.println(e.getCode());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 异步调用分组设备移除API
+     */
+    @Test
+    public void testRemoveGroupDeviceAsync() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        RemoveGroupDeviceRequest request = new RemoveGroupDeviceRequest();
+        request.setProjectId(projectId);
+        request.setId("KXhRAz");
+        request.setProductId(productId);
+        request.setDevices(Collections.singletonList("api-sdk-device-005"));
+
+        client.sendRequestAsync(request).whenComplete((response, cause) -> {
+            if (response != null) {
+                System.out.println(response.getRequestId());
+                response.forEach(errorData -> System.out.println(JSON.toJSONString(errorData)));
+            } else {
+                if (cause instanceof IotServerException) {
+                    IotServerException serverError = (IotServerException) cause;
+                    System.err.println(serverError.getCode());
+                }
+                cause.printStackTrace();
+            }
+            latch.countDown();
+        });
+        latch.await();
+    }
+
+    /**
+     * 同步调用服务API
+     */
+    @Test
+    public void testCallService() {
+        CallServiceRequest request = new CallServiceRequest();
+        request.setProductId(productId);
+        request.setDeviceName("del11");
+        request.setIdentifier("adfaf");
+        request.addParam("a", 1);
+
+        try {
+            CallServiceResponse response = client.sendRequest(request);
+            System.out.println(JSON.toJSONString(response));
+        } catch (IotClientException e) {
+            e.printStackTrace();
+        } catch (IotServerException e) {
+            System.err.println(e.getCode());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 异步调用服务API
+     */
+    @Test
+    public void testCallServiceAsync() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        CallServiceRequest request = new CallServiceRequest();
+        request.setProductId(productId);
+        request.setDeviceName("api-sdk-device-001");
+        request.setIdentifier("service-api");
+        request.addParam("input-param1", 1);
+
+        client.sendRequestAsync(request).whenComplete((response, cause) -> {
+           if (response != null) {
+               System.out.println(JSON.toJSONString(response));
+           } else {
+               if (cause instanceof IotServerException) {
+                   IotServerException serverError = (IotServerException) cause;
+                   System.err.println(serverError.getCode());
+               }
+               cause.printStackTrace();
+           }
+           latch.countDown();
+        });
+        latch.await();
     }
 }

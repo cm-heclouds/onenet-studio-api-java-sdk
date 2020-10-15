@@ -20,7 +20,7 @@ public class ValueHolderSerializer implements ObjectSerializer {
         if (!(object instanceof ValueHolder)) {
             throw new IOException("except " + ValueHolder.class + " type, but get " + object.getClass());
         }
-        ValueHolder valueHolder = (ValueHolder) object;
+        ValueHolder<?> valueHolder = (ValueHolder<?>) object;
         serializer.write(valueHolder.getValue());
     }
 }

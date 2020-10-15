@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 调用服务响应
+ * 调用服务请求
  * <a href="https://open.iot.10086.cn/doc/iot_platform/book/api/application/callService.html">调用服务</a>
  * @author ChengQi
  * @date 2020/10/14
@@ -60,7 +60,7 @@ public class CallServiceRequest extends BaseApplicationRequest<CallServiceRespon
      * @param key 输入参数的唯一标识
      * @param value 输入参数的值
      */
-    public void addParam(String key, String value) {
+    public void addParam(String key, Object value) {
         params.put(key, value);
         bodyParam("params", this.params);
     }

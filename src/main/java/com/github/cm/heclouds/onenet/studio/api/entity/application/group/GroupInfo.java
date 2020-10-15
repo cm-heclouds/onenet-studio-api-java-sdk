@@ -24,6 +24,11 @@ public class GroupInfo {
     private String name;
 
     /**
+     * 分组描述
+     */
+    private String desc;
+
+    /**
      * 项目id
      */
     @JSONField(name = "project_id")
@@ -65,6 +70,14 @@ public class GroupInfo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getProjectId() {

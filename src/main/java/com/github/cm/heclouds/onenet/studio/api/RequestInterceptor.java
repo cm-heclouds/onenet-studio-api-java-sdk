@@ -22,14 +22,14 @@ public class RequestInterceptor implements Interceptor {
         Request request = chain.request();
         AbstractRequest<?> tag = request.tag(AbstractRequest.class);
         HttpUrl.Builder urlBuilder = request.url().newBuilder();
-        urlBuilder.addPathSegment(tag.getNameSpace());
+        urlBuilder.addPathSegment(Objects.requireNonNull(tag).getNameSpace());
         Map<String, Object> queryParams = tag.getQueryParams();
         queryParams.forEach((name, value) -> {
             String parameter = null;
             if (!Objects.isNull(value)) {
                 parameter = value.toString();
                 if (value instanceof ValueHolder) {
-                    parameter = ((ValueHolder) value).getValue().toString();
+                    parameter = ((ValueHolder<?>) value).getValue().toString();
                 }
             }
             urlBuilder.addQueryParameter(name, parameter);

@@ -1,10 +1,6 @@
 package com.github.cm.heclouds.onenet.studio.api.entity.application.group;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.cm.heclouds.onenet.studio.api.entity.application.BaseApplicationRequest;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
 
 /**
  * 分组删除请求
@@ -41,16 +37,6 @@ public class DeleteGroupRequest extends BaseApplicationRequest<DeleteGroupRespon
 
     @Override
     protected DeleteGroupResponse newResponse(String responseBody) {
-        DeleteGroupResponse response = new DeleteGroupResponse();
-        if (StringUtils.isEmpty(responseBody)) {
-            return response;
-        }
-        JSONObject jsonObject = JSONObject.parseObject(responseBody);
-        if (!jsonObject.containsKey("error_data")) {
-            return response;
-        }
-        List<ErrorData> errorData = jsonObject.getJSONArray("error_data").toJavaList(ErrorData.class);
-        response.addAll(errorData);
-        return response;
+        return new DeleteGroupResponse();
     }
 }

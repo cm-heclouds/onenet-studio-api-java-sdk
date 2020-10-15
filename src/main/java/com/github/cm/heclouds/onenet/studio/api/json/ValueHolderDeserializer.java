@@ -28,7 +28,7 @@ public class ValueHolderDeserializer implements ObjectDeserializer {
         }
         Class<?> genericType = getValueHolderGenericType(typeClass);
         Object originalValue = parser.parseObject(genericType);
-        ValueHolder[] allPossibilities = (ValueHolder[]) typeClass.getEnumConstants();
+        ValueHolder<?>[] allPossibilities = (ValueHolder<?>[]) typeClass.getEnumConstants();
         return (T) Stream.of(allPossibilities)
                 .filter(possibility -> possibility.getValue().equals(originalValue))
                 .findAny()

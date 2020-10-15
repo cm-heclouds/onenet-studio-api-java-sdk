@@ -25,9 +25,9 @@ public enum SignatureMethod {
      */
     SHA256("HmacSHA256", "sha256");
 
-    private String macName;
-    private String methodName;
-    private Function<String, byte[]> decodeFunc = encryptKey -> Base64.getDecoder().decode(encryptKey);
+    private final String macName;
+    private final String methodName;
+    private final Function<String, byte[]> decodeFunc = encryptKey -> Base64.getDecoder().decode(encryptKey);
 
     SignatureMethod(String macName, String methodName) {
         this.macName = macName;

@@ -15,8 +15,11 @@ import java.io.IOException;
 @SuppressWarnings("FieldCanBeLocal")
 public class ApiTest {
 
-    private final String userId = "154377";
-    private final String accessKey = "ioI/lquiGVxzEFRGuijpXNSqb8MH0pUEjH67jwEPL1AuKn9/HDr1XhCNv7vXfGiQgOTP1G+l7ThhgqtKvWj1ww==";
+    private final String userId = "<your userId>";
+    private final String accessKey = "<your accessKey>";
+//    private final String projectId = "<your projectId>";
+//    private final String groupId = "<your groupId>";
+//    private final String accessKey = "<your group key>";
 
     IotClient client;
 
@@ -26,9 +29,11 @@ public class ApiTest {
     @Before
     public void initClient() {
         IotProfile profile = new IotProfile();
-        profile.userId(userId)
+        profile
+                .userId(userId)
+//                .projectId(projectId)
+//                .groupId(groupId)
                 .accessKey(accessKey)
-                .enableSsl(true)
                 .signatureMethod(SignatureMethod.SHA256);
         client = IotClient.create(profile);
     }

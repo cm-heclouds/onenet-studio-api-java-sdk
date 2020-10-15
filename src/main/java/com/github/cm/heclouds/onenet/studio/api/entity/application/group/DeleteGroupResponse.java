@@ -1,8 +1,6 @@
 package com.github.cm.heclouds.onenet.studio.api.entity.application.group;
 
-import com.github.cm.heclouds.onenet.studio.api.IotResponse;
-
-import java.util.ArrayList;
+import com.github.cm.heclouds.onenet.studio.api.AbstractResponse;
 
 /**
  * 分组删除响应
@@ -10,17 +8,6 @@ import java.util.ArrayList;
  * @author ChengQi
  * @date 2020/10/14
  */
-public class DeleteGroupResponse extends ArrayList<ErrorData> implements IotResponse {
+public class DeleteGroupResponse extends AbstractResponse {
 
-    private String requestId;
-
-    @Override
-    public String getRequestId() {
-        return requestId;
-    }
-
-    @Override
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
 }

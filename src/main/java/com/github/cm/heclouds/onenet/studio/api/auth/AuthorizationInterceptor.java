@@ -15,8 +15,8 @@ import java.net.URLEncoder;
  */
 public class AuthorizationInterceptor implements Interceptor {
 
-    private Signature signature;
-    private String accessKey;
+    private final Signature signature;
+    private final String accessKey;
     private String authorization;
 
     public AuthorizationInterceptor(Signature signature, String accessKey) throws Exception {
