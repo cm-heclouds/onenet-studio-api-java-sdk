@@ -40,42 +40,23 @@ public class DefaultIotClient implements IotClient {
 
     DefaultIotClient(String userId, String projectId, String groupId, String accessKey,
                      SignatureMethod method, TemporalAmount temporalAmount, String url, boolean enableSsl) {
-        if (!checkConstructParams(userId, projectId, groupId, accessKey, method)) {
-            return;
-        }
-        String res;
-        if (StringUtils.isNotEmpty(userId)) {
-            res = "userid/" + userId;
-        } else {
-            res = "projectid/" + projectId + "/groupid/" + groupId;
-        }
-        LocalDateTime expireTime = LocalDateTime.now().plus(temporalAmount);
-        long et = expireTime.toInstant(ZoneOffset.of("+8")).getEpochSecond();
-        Signature signature = new Signature(VERSION, res, et, method);
-        Interceptor authorization;
         try {
-            authorization = new AuthorizationInterceptor(signature, accessKey);
+            if (!checkConstructParams(userId, projectId, groupId, accessKey, method)) {
+                return;
+            }
+            Signature signature = new Signature(VERSION, generateResource(userId, projectId, groupId),
+                    convertExpireTime(temporalAmount), method);
+            Interceptor authorization = new AuthorizationInterceptor(signature, accessKey);
+            initClient(authorization, new RequestInterceptor());
+            initPassUrl(enableSsl, url);
+            initialSuccess = true;
         } catch (NoSuchAlgorithmException e) {
             initialError = new IotClientException("not support signature method", e);
-            return;
         } catch (InvalidKeyException e) {
             initialError = new IotClientException("invalid accessKey", e);
-            return;
         } catch (Exception e) {
             initialError = new IotClientException(e.getMessage(), e);
-            return;
         }
-        client = new OkHttpClient.Builder()
-                .addInterceptor(authorization)
-                .addInterceptor(new RequestInterceptor())
-                .build();
-        if (enableSsl) {
-            passUrl = Constant.OPEN_API_URL_SSL;
-        }
-        if (StringUtils.isNotEmpty(url)) {
-            passUrl = url;
-        }
-        initialSuccess = true;
     }
 
     @Override
@@ -194,6 +175,56 @@ public class DefaultIotClient implements IotClient {
             return false;
         }
         return true;
+    }
+
+    /**
+     * init OkHttpClient
+     * @param interceptors for building client
+     */
+    private void initClient(Interceptor... interceptors) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        for (Interceptor interceptor: interceptors) {
+            builder.addInterceptor(interceptor);
+        }
+        client = builder.build();
+    }
+
+    /**
+     * OneNET pass host settings
+     * @param enableSsl using https
+     * @param url not required
+     */
+    private void initPassUrl(boolean enableSsl, String url) {
+        if (enableSsl) {
+            passUrl = Constant.OPEN_API_URL_SSL;
+        }
+        if (StringUtils.isNotEmpty(url)) {
+            passUrl = url;
+        }
+    }
+
+    /**
+     * generate resource
+     * @param userId OneNET Studio userId
+     * @param projectId OneNET Studio projectId
+     * @param groupId OneNET Studio groupId
+     * @return resource
+     */
+    private String generateResource(String userId, String projectId, String groupId) {
+        if (StringUtils.isNotEmpty(userId)) {
+            return "userid/" + userId;
+        }
+        return "projectid/" + projectId + "/groupid/" + groupId;
+    }
+
+    /**
+     * convert expire time to timestamp
+     * @param temporalAmount expire duration
+     * @return expire time
+     */
+    private long convertExpireTime(TemporalAmount temporalAmount) {
+        LocalDateTime expireTime = LocalDateTime.now().plus(temporalAmount);
+        return expireTime.toInstant(ZoneOffset.of("+8")).getEpochSecond();
     }
 
     @Override
