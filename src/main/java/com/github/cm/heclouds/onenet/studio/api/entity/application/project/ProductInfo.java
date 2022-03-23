@@ -18,7 +18,7 @@ public class ProductInfo {
      * 产品ID
      */
     @JSONField(name = "product_id")
-    private String projectId;
+    private String productId;
 
     /**
      * 产品名称
@@ -65,12 +65,12 @@ public class ProductInfo {
     @JSONField(name = "device_number")
     private Integer deviceNumber;
 
-    public String getProjectId() {
-        return projectId;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getName() {
