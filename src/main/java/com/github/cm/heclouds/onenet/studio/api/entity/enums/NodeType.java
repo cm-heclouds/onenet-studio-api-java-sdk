@@ -16,7 +16,11 @@ public enum NodeType implements ValueHolder<Integer> {
     /**
      * 网关设备
      */
-    GATEWAY_CONNECT_DEVICE(2);
+    GATEWAY_CONNECT_DEVICE(2),
+    /**
+     * 子设备
+     */
+    SUB_CONNECT_DEVICE(3);
 
     private final Integer value;
 
